@@ -9,7 +9,7 @@ import sqlite3
 import json
 from datetime import datetime
 
-timeframe = '2015-05'
+timeframe = '2015-01'
 sqp_transaction=[]
 
 connection = sqlite3.connect('{}.db'.format(timeframe))
@@ -43,12 +43,13 @@ if __name__ == '__main__':
     row_counter=0
     parent_counter=0
     
-    with open('E:/chatbot_data/RC_{}'.format(timeframe), buffering=1000) as f:
+    with open('E:/chatbot_data/RC_{}/RC_{}'.format(timeframe,timeframe), buffering=1000) as f:
         for row in f:
+            #print(row)
             row_counter+=1
             row = json.loads(row)
             parent_id = row['parent_id']
-            body = format_data(row['data'])
+            body = format_data(row['body'])
             created_utc = row['created_utc']
             score = row['score']
             subreddit = row['subreddit']
